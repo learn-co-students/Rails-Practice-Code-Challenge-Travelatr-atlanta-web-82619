@@ -1,0 +1,33 @@
+<h1>All About <%= @blogger.name %></h1>
+<h3>Total Likes: <%= @blogger.total_likes %></h3><br>
+
+<div>
+    <h3>Top Destinations: </h3> 
+    <ul>
+        <% @blogger.top_destinations[0..4].each do |value, destination| %>
+            <li><%= link_to destination.name, destination_path(destination) %></li>
+        <% end %>
+    </ul>
+</div><br>
+
+<div>
+    <h2>Biography:</h2>
+    <p><%= @blogger.bio %></p>
+</div><br>
+
+<div>
+    <h2><%= @blogger.name %>'s Top Post:</h2>
+    <% if @blogger.most_popular_post %>
+        <% if @blogger.most_popular_post.likes < 1 %>
+            <p> No posts currently have any likes.</p>
+        <% else %>
+            <div style="border-style: solid; width: 90%; padding: 10px">
+                <p><b><u><%= link_to @blogger.most_popular_post.title, post_path(@blogger.most_popular_post) %></u></b></p>
+                <p><%= @blogger.most_popular_post.content %></p>
+                <p>Likes: <%= @blogger.most_popular_post.likes %></p>
+            </div>
+        <% end %>
+    <% else %>
+        <p> Sorry, no top posts to show.</p>
+    <% end %>
+</div>

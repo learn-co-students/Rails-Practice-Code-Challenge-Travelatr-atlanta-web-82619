@@ -1,0 +1,19 @@
+<h1>Posts about <%= @destination.name %></h1>
+<h4>Average blogger age: <%= @destination.average_age %></h4>
+
+<div style="border-style: solid; width: 97%; padding: 10px">
+    <h2>Featured Post: <%= link_to @destination.most_liked_post.title, post_path(@destination.most_liked_post.id) %></h2>
+</div>
+
+<div>
+    <ul>
+        <% @destination.posts.limit(5).each do |post| %>
+            <div style="border-style: solid; width: 90%; padding: 10px">
+                <h2><%= link_to post.title, post_path(post) %></h2>
+                <%= link_to post.blogger.name, blogger_path(post.blogger) %><br><br>
+                <%= post.content %><br><br>
+                Total Likes: <%= post.likes %><br><br>
+            </div><br>
+        <% end %>
+    </ul>
+</div>
