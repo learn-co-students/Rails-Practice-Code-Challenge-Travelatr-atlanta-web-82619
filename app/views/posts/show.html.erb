@@ -1,0 +1,7 @@
+<h1><%= @post.title %></h1>
+<h3>By: <%= link_to @post.blogger.name, blogger_path(@post.blogger) %></h3>
+<p style="width: 80%"><%= @post.content %></p>
+<h4>Post's Destination: <%= link_to @post.destination.name, destination_path(@post.destination) %></h4>
+Current Likes: <%= @post.likes %> <br>
+
+<%= link_to "Add Like", post_add_like_path(@post) %>
